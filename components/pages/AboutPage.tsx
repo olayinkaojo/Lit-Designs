@@ -131,7 +131,7 @@ export function AboutPageContent() {
           <h1 className="font-display text-display md:text-[clamp(3rem,7vw,5rem)] text-white mb-4 leading-tight">
             Olayinka Samuel Ojo
           </h1>
-          <p className="font-display text-xl md:text-2xl italic mb-6" style={{ color: '#C9A84C' }}>
+          <p className="font-display text-xl md:text-2xl italic mb-6" style={{ color: '#5DC241' }}>
             Graphics Designer · Creative Director · Visual Brand Specialist
           </p>
           <div className="flex flex-wrap items-center gap-4 mb-8 font-sans text-sm text-white/40">
@@ -178,7 +178,7 @@ export function AboutPageContent() {
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6">
               <p className="font-display text-lg text-white">Olayinka Samuel Ojo</p>
-              <p className="font-sans text-xs tracking-[0.15em] uppercase mt-0.5" style={{ color: '#C9A84C' }}>
+              <p className="font-sans text-xs tracking-[0.15em] uppercase mt-0.5" style={{ color: '#5DC241' }}>
                 Founder & Creative Director
               </p>
             </div>

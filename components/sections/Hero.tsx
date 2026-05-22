@@ -48,7 +48,7 @@ function ParticleCanvas() {
         if (p.y < 0 || p.y > canvas.height) p.vy *= -1
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(201,168,76,${p.alpha})`
+        ctx.fillStyle = `rgba(93,194,65,${p.alpha})`
         ctx.fill()
       })
       // Connection lines
@@ -61,7 +61,7 @@ function ParticleCanvas() {
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(201,168,76,${0.06 * (1 - dist / 110)})`
+            ctx.strokeStyle = `rgba(93,194,65,${0.06 * (1 - dist / 110)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }
@@ -116,7 +116,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 65% 55% at 50% 65%, rgba(201,168,76,0.055) 0%, transparent 72%)',
+            'radial-gradient(ellipse 65% 55% at 50% 65%, rgba(93,194,65,0.055) 0%, transparent 72%)',
         }}
         aria-hidden="true"
       />

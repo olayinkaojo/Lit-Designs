@@ -10,21 +10,21 @@
   --black: #080808;
   --surface: #141414;
   --surface-2: #1a1a1a;
-  --gold: #C9A84C;
-  --gold-light: #E8C96A;
-  --gold-rgb: 201, 168, 76;
+  --gold: #5DC241;
+  --gold-light: #72D455;
+  --gold-rgb: 93, 194, 65;
   --white: #ffffff;
   --white-70: rgba(255, 255, 255, 0.7);
   --white-40: rgba(255, 255, 255, 0.4);
   --border: rgba(255, 255, 255, 0.07);
-  --border-gold: rgba(201, 168, 76, 0.2);
+  --border-gold: rgba(93, 194, 65, 0.2);
   --radius: 0.75rem;
 
-  /* Light mode overrides */
-  --bg: var(--white);
-  --bg-surface: #f5f1eb;
-  --text-primary: var(--black);
-  --text-secondary: rgba(8, 8, 8, 0.6);
+  /* Light mode backgrounds */
+  --bg: #fafaf8;
+  --bg-surface: #f0ece3;
+  --text-primary: #0f0f0f;
+  --text-secondary: rgba(15, 15, 15, 0.6);
 }
 
 .dark {
@@ -69,8 +69,8 @@
   }
 
   ::selection {
-    background-color: rgba(201, 168, 76, 0.25);
-    color: var(--gold-light);
+    background-color: rgba(93, 194, 65, 0.25);
+    color: #72D455;
   }
 }
 
@@ -111,7 +111,7 @@
 .cursor-ring {
   width: 32px;
   height: 32px;
-  border: 1.5px solid rgba(201, 168, 76, 0.5);
+  border: 1.5px solid rgba(93, 194, 65, 0.5);
   transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
@@ -119,13 +119,13 @@
   width: 48px;
   height: 48px;
   border-color: var(--gold);
-  background-color: rgba(201, 168, 76, 0.05);
+  background-color: rgba(93, 194, 65, 0.05);
 }
 
 .cursor-ring.clicking {
   width: 28px;
   height: 28px;
-  background-color: rgba(201, 168, 76, 0.15);
+  background-color: rgba(93, 194, 65, 0.15);
 }
 
 /* ─── Utility Classes ──────────────────────────────── */
@@ -139,12 +139,12 @@
   }
 
   .bg-gold-gradient {
-    background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #C9A84C 100%);
+    background: linear-gradient(135deg, #5DC241 0%, #72D455 50%, #5DC241 100%);
     background-size: 200% auto;
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #C9A84C 100%);
+    background: linear-gradient(135deg, #5DC241 0%, #72D455 50%, #5DC241 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -241,7 +241,7 @@ html.lenis body {
 /* ─── Gradient Border ───────────────────────────────── */
 .gradient-border {
   position: relative;
-  background: var(--surface);
+  background: var(--bg-surface);
 }
 
 .gradient-border::before {
@@ -250,7 +250,7 @@ html.lenis body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(201, 168, 76, 0.4), transparent 40%, rgba(201, 168, 76, 0.2));
+  background: linear-gradient(135deg, rgba(93, 194, 65, 0.4), transparent 40%, rgba(93, 194, 65, 0.2));
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -260,4 +260,54 @@ html.lenis body {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+/* ─── Light Mode Theme Overrides ────────────────────── */
+/*
+ * Since components use dark-first Tailwind classes (text-white, bg-brand-black, etc.),
+ * these selectors flip them for light mode without touching component files.
+ * The --tw-text-opacity / --tw-border-opacity custom properties set by Tailwind
+ * classes are inherited per-element, so opacity modifiers (e.g. /60) still apply.
+ */
+
+/* Section & layout backgrounds */
+html:not(.dark) [class*="bg-brand-black"] {
+  background-color: #fafaf8 !important;
+}
+html:not(.dark) .bg-brand-surface {
+  background-color: #f0ece3 !important;
+}
+html:not(.dark) .bg-brand-surface-2 {
+  background-color: #e8e3d8 !important;
+}
+
+/* Translucent white backgrounds → translucent dark */
+html:not(.dark) [class*="bg-white\/"] {
+  background-color: rgb(15 15 15 / var(--tw-bg-opacity, 0.05)) !important;
+}
+
+/* White text → near-black text, preserving opacity modifier */
+html:not(.dark) [class*="text-white"] {
+  color: rgb(15 15 15 / var(--tw-text-opacity, 1)) !important;
+}
+
+/* Accent text: ensure enough contrast on light backgrounds */
+html:not(.dark) [class*="text-brand-gold"],
+html:not(.dark) .section-label {
+  color: #2d8c1a !important;
+}
+
+/* White borders → subtle dark borders */
+html:not(.dark) [class*="border-white"] {
+  border-color: rgb(15 15 15 / var(--tw-border-opacity, 0.08)) !important;
+}
+
+/* Gradient border surface */
+html:not(.dark) .gradient-border {
+  background: #f0ece3 !important;
+}
+
+/* Navbar scrolled background */
+html:not(.dark) header {
+  --navbar-bg: rgba(250, 249, 248, 0.95);
 }

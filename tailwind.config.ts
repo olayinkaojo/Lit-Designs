@@ -13,8 +13,8 @@ const config: Config = {
         'brand-black': '#080808',
         'brand-surface': '#141414',
         'brand-surface-2': '#1a1a1a',
-        'brand-gold': '#C9A84C',
-        'brand-gold-light': '#E8C96A',
+        'brand-gold': '#5DC241',
+        'brand-gold-light': '#72D455',
         'brand-border': 'rgba(255,255,255,0.07)',
       },
       fontFamily: {
@@ -34,7 +34,7 @@ const config: Config = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-gold': 'linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #C9A84C 100%)',
+        'gradient-gold': 'linear-gradient(135deg, #5DC241 0%, #72D455 50%, #5DC241 100%)',
         'noise': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E\")",
       },
       keyframes: {
@@ -71,9 +71,9 @@ const config: Config = {
         'circ-out': 'cubic-bezier(0, 0.55, 0.45, 1)',
       },
       boxShadow: {
-        'gold': '0 0 40px rgba(201, 168, 76, 0.15)',
-        'gold-sm': '0 0 20px rgba(201, 168, 76, 0.1)',
-        'inner-gold': 'inset 0 0 30px rgba(201, 168, 76, 0.05)',
+        'gold': '0 0 40px rgba(93, 194, 65, 0.15)',
+        'gold-sm': '0 0 20px rgba(93, 194, 65, 0.1)',
+        'inner-gold': 'inset 0 0 30px rgba(93, 194, 65, 0.05)',
         'card': '0 4px 40px rgba(0, 0, 0, 0.4)',
       },
     },

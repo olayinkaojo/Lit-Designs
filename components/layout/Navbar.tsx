@@ -144,7 +144,7 @@ export function Navbar() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-0 z-40 flex flex-col justify-center"
-            style={{ backgroundColor: '#080808' }}
+            style={{ backgroundColor: 'var(--bg, #080808)' }}
           >
             {/* Logo top-left */}
             <div className="absolute top-5 left-6">

@@ -27,7 +27,7 @@ export function CTA() {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,168,76,0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(ellipse 70% 60% at 50% 100%, rgba(93,194,65,0.08) 0%, transparent 70%)',
         }}
         aria-hidden="true"
       />
@@ -37,7 +37,7 @@ export function CTA() {
         className="absolute inset-0 pointer-events-none opacity-[0.02]"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(201,168,76,1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px)',
+            'linear-gradient(rgba(93,194,65,1) 1px, transparent 1px), linear-gradient(90deg, rgba(93,194,65,1) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
         aria-hidden="true"
