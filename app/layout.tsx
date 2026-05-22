@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
-  keywords: SEO.keywords,
+  keywords: [...SEO.keywords],
   authors: [{ name: SITE.founder, url: SITE.url }],
   creator: SITE.founder,
   publisher: SITE.legalName,
