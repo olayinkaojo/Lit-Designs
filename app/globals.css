@@ -133,6 +133,11 @@
 
 /* ─── Utility Classes ──────────────────────────────── */
 @layer utilities {
+  .mask-marquee {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
   .text-gold {
     color: var(--gold);
   }
