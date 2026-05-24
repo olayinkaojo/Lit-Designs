@@ -111,14 +111,23 @@ export function Footer() {
             <ul className="space-y-3">
               {FOOTER_LINKS.company.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    target={link.href.startsWith('http') ? '_blank' : undefined}
-                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    className="font-sans text-sm text-white/45 hover:text-brand-gold transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.href.startsWith('http') ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-sans text-sm text-white/45 hover:text-brand-gold transition-colors duration-300"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="font-sans text-sm text-white/45 hover:text-brand-gold transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
