@@ -1,17 +1,76 @@
+'use client'
+
 /**
- * LCD Logo SVG components
- * Drop /public/logo/logo.svg in to swap with the real asset when ready.
- * These inline SVGs faithfully represent the Lit Creative Designs flame mark:
- * — Green curved flame (front) + charcoal curved flame (back)
- * — Wordmark: "Lit" green · "Creative" charcoal · "designs" charcoal · "LIMITED" grey
+ * Uses /public/logo/logo.svg — the real Lit Creative Designs asset.
+ *
+ * The SVG is 1500×1500 with a white background rect.
+ * A CSS crop window reveals only the flame + wordmark content region.
+ * On dark backgrounds the white bg becomes invisible via:
+ *   filter: invert(1) hue-rotate(180deg)
+ *   — white → black (matches dark bg), green stays green, charcoal → light grey.
+ *
+ * LogoFlame is kept as inline SVG since no standalone flame file exists.
  */
 
-// ─── Brand Colors extracted from actual logo ────────────
-export const LOGO_GREEN = '#5DC241'
-export const LOGO_CHARCOAL = '#3D3D3D'
+// ─── Brand colors (match logo.svg) ──────────────────────
+export const LOGO_GREEN = '#80bb4e'
+export const LOGO_CHARCOAL = '#414149'
 export const LOGO_GREY = '#6B6B6B'
 
-// ─── Just the flame mark (used in tight spaces) ─────────
+// ─── Full logo using the real SVG file ──────────────────
+//
+// Crop math (SVG is 1500×1500):
+// Content region: x 85–1310, y 310–1040 → 1225×730px → aspect 1.68:1
+//
+// Scale = containerH / 730
+// imgSize  = 1500 × scale
+// left     = -(85  × scale)
+// top      = -(310 × scale)
+// containerW = 1225 × scale
+//
+const CROP_CONFIGS = {
+  sm:      { imgSize: 91,  left: -5,  top: -19, containerW: 74,  containerH: 44 },
+  default: { imgSize: 115, left: -7,  top: -24, containerW: 94,  containerH: 56 },
+  lg:      { imgSize: 148, left: -8,  top: -31, containerW: 121, containerH: 72 },
+} as const
+
+interface LogoFullProps {
+  size?: keyof typeof CROP_CONFIGS
+  className?: string
+}
+
+export function LogoFull({ size = 'default', className = '' }: LogoFullProps) {
+  const c = CROP_CONFIGS[size]
+
+  return (
+    <div
+      className={`relative overflow-hidden flex-shrink-0 ${className}`}
+      style={{ width: c.containerW, height: c.containerH }}
+      aria-label="Lit Creative Designs"
+      role="img"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo/logo.svg"
+        alt=""
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          width: c.imgSize,
+          height: c.imgSize,
+          left: c.left,
+          top: c.top,
+          userSelect: 'none',
+          pointerEvents: 'none',
+        }}
+        className="dark:[filter:invert(1)_hue-rotate(180deg)]"
+      />
+    </div>
+  )
+}
+
+// ─── Standalone flame mark (used in Preloader) ──────────
+// Kept as inline SVG — no standalone flame file in /public.
 export function LogoFlame({ className = 'w-10 h-12' }: { className?: string }) {
   return (
     <svg
@@ -21,13 +80,11 @@ export function LogoFlame({ className = 'w-10 h-12' }: { className?: string }) {
       className={className}
       aria-hidden="true"
     >
-      {/* Back/lower charcoal flame */}
       <path
         d="M42 68C30 72 16 64 14 50C12 36 18 20 28 12C26 22 26 38 30 52C33 62 38 66 42 68Z"
         fill={LOGO_CHARCOAL}
         fillOpacity="0.9"
       />
-      {/* Front/upper green flame */}
       <path
         d="M28 72C16 76 2 68 0 54C-2 40 4 22 14 14C12 24 12 40 16 54C19 64 24 70 28 72Z"
         fill={LOGO_GREEN}
@@ -36,52 +93,7 @@ export function LogoFlame({ className = 'w-10 h-12' }: { className?: string }) {
   )
 }
 
-// ─── Full horizontal logo (mark + wordmark) ─────────────
-export function LogoFull({
-  className = '',
-  size = 'default',
-  darkMode = true,
-}: {
-  className?: string
-  size?: 'sm' | 'default' | 'lg'
-  darkMode?: boolean
-}) {
-  const textColor = darkMode ? '#ffffff' : LOGO_CHARCOAL
-
-  const scales = {
-    sm: { flame: 'w-7 h-8', text1: 'text-sm', text2: 'text-[10px]' },
-    default: { flame: 'w-9 h-11', text1: 'text-base', text2: 'text-[11px]' },
-    lg: { flame: 'w-12 h-14', text1: 'text-xl', text2: 'text-sm' },
-  }
-
-  const s = scales[size]
-
-  return (
-    <div className={`flex items-center gap-2.5 ${className}`} aria-label="Lit Creative Designs">
-      <LogoFlame className={s.flame} />
-      <div className="flex flex-col leading-none">
-        {/* Line 1: Lit + Creative */}
-        <div className={`font-display font-semibold tracking-tight ${s.text1} flex items-baseline gap-0.5`}>
-          <span style={{ color: LOGO_GREEN }}>Lit</span>
-          <span style={{ color: textColor }}>&nbsp;Creative</span>
-        </div>
-        {/* Line 2: designs */}
-        <div className={`font-display font-normal leading-tight ${s.text1}`} style={{ color: textColor }}>
-          designs
-        </div>
-        {/* Line 3: LIMITED */}
-        <div
-          className={`font-sans uppercase tracking-[0.22em] leading-tight mt-0.5 ${s.text2}`}
-          style={{ color: darkMode ? 'rgba(255,255,255,0.45)' : LOGO_GREY }}
-        >
-          Limited
-        </div>
-      </div>
-    </div>
-  )
-}
-
-// ─── Compact mark — just text, no flame ─────────────────
+// ─── Text-only wordmark ──────────────────────────────────
 export function LogoText({
   size = 'default',
   darkMode = true,

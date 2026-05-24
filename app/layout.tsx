@@ -88,7 +88,7 @@ const jsonLd = {
       '@id': `${SITE.url}/#organization`,
       name: SITE.legalName,
       url: SITE.url,
-      logo: `${SITE.url}/logo/logo.png`,
+      logo: `${SITE.url}/logo/logo.svg`,
       email: SITE.email,
       telephone: SITE.phone,
       description: SITE.description,

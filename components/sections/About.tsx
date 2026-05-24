@@ -44,7 +44,7 @@ export function About() {
         >
           <div className="relative aspect-[4/5] overflow-hidden gradient-border">
             <Image
-              src="/images/team/founder.jpg"
+              src="/founder/olayinka.png"
               alt={`${SITE.founder} — Founder & Creative Director`}
               fill
               className="object-cover object-top grayscale hover:grayscale-0 transition-all duration-700"
