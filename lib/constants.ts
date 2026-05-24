@@ -6,7 +6,7 @@ export const SITE = {
   description:
     'Lit Creative Designs is a premium creative agency based in Abuja, Nigeria. Founded by Olayinka Samuel Ojo, we craft brand identities, digital products, and visual systems that command attention — for businesses across Africa, Europe, and North America.',
   url: 'https://litcreativedesigns.com',
-  email: 'olayinkaojo.ng@gmail.com',
+  email: 'info@litcreativedesigns.com',
   phone: '+234 803 073 1420',
   whatsapp: '2348030731420',
   location: 'Abuja, Nigeria',
