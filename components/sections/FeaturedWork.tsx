@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useInView } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
@@ -26,25 +27,38 @@ function FeaturedCard({ project, index }: { project: typeof portfolioProjects[0]
         className="relative aspect-[3/4] overflow-hidden"
         style={{ background: `linear-gradient(145deg, ${project.color}22 0%, ${project.color}0a 100%)` }}
       >
+        {/* Real project image when available */}
+        {project.coverImage && (
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            className="object-cover object-top"
+            sizes="(max-width: 640px) 85vw, (max-width: 1024px) 55vw, 40vw"
+          />
+        )}
+
         {/* Corner index */}
-        <span className="absolute top-4 left-5 font-sans text-xs tracking-[0.2em] text-white/20 tabular-nums">
+        <span className="absolute top-4 left-5 font-sans text-xs tracking-[0.2em] text-white/50 tabular-nums z-10">
           {String(index + 1).padStart(2, '0')}
         </span>
 
         {/* Category pill */}
-        <span className="absolute top-4 right-5 px-3 py-1 border border-white/10 font-sans text-[9px] tracking-[0.2em] uppercase text-white/35">
+        <span className="absolute top-4 right-5 px-3 py-1 border border-white/20 bg-brand-black/40 backdrop-blur-sm font-sans text-[9px] tracking-[0.2em] uppercase text-white/60 z-10">
           {project.category}
         </span>
 
-        {/* Placeholder visual */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span
-            className="font-display text-[10rem] font-light select-none leading-none"
-            style={{ color: project.color + '18' }}
-          >
-            {project.client.charAt(0)}
-          </span>
-        </div>
+        {/* Fallback letter when no image */}
+        {!project.coverImage && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span
+              className="font-display text-[10rem] font-light select-none leading-none"
+              style={{ color: project.color + '18' }}
+            >
+              {project.client.charAt(0)}
+            </span>
+          </div>
+        )}
 
         {/* Hover overlay */}
         <div className="absolute inset-0 bg-brand-black/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">

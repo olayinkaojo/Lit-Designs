@@ -1,0 +1,6 @@
+.next
+node_modules
+tsconfig.tsbuildinfo
+*.tsbuildinfo
+.DS_Store
+1.text

@@ -27,13 +27,22 @@ function ProjectCard({ project }: { project: typeof portfolioProjects[0] }) {
             className="absolute inset-0 flex items-center justify-center"
             style={{ backgroundColor: project.color + '15' }}
           >
-            {/* Placeholder — replace with real Image when assets are added */}
-            <div
-              className="w-full h-full"
-              style={{
-                background: `linear-gradient(135deg, ${project.color}20 0%, ${project.color}08 100%)`,
-              }}
-            />
+            {project.coverImage && !project.coverImage.includes('placeholder') ? (
+              <Image
+                src={project.coverImage}
+                alt={project.title}
+                fill
+                className="object-cover object-top"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              />
+            ) : (
+              <div
+                className="w-full h-full"
+                style={{
+                  background: `linear-gradient(135deg, ${project.color}20 0%, ${project.color}08 100%)`,
+                }}
+              />
+            )}
           </div>
 
           {/* Hover overlay */}

@@ -56,12 +56,23 @@ export function CaseStudy({ project }: CaseStudyProps) {
           className="relative aspect-[16/9] overflow-hidden"
           style={{ background: `linear-gradient(135deg, ${project.color}20 0%, ${project.color}08 100%)` }}
         >
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display text-9xl font-light" style={{ color: project.color + '30' }}>
-              {project.client.charAt(0)}
-            </span>
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 to-transparent" />
+          {project.coverImage ? (
+            <Image
+              src={project.coverImage}
+              alt={project.title}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 90vw"
+              priority
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="font-display text-9xl font-light" style={{ color: project.color + '30' }}>
+                {project.client.charAt(0)}
+              </span>
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-black/40 to-transparent pointer-events-none" />
         </motion.div>
       </section>
 
@@ -176,12 +187,24 @@ export function CaseStudy({ project }: CaseStudyProps) {
               className="group"
             >
               <div
-                className="aspect-[4/3] mb-4 overflow-hidden flex items-center justify-center"
+                className="relative aspect-[4/3] mb-4 overflow-hidden"
                 style={{ background: `linear-gradient(135deg, ${p.color}20 0%, ${p.color}08 100%)` }}
               >
-                <span className="font-display text-6xl font-light" style={{ color: p.color + '40' }}>
-                  {p.client.charAt(0)}
-                </span>
+                {p.coverImage ? (
+                  <Image
+                    src={p.coverImage}
+                    alt={p.title}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="font-display text-6xl font-light" style={{ color: p.color + '40' }}>
+                      {p.client.charAt(0)}
+                    </span>
+                  </div>
+                )}
               </div>
               <p className="font-sans text-sm font-medium text-white/70 group-hover:text-white transition-colors duration-300">
                 {p.title}
