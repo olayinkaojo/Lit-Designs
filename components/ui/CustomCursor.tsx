@@ -6,6 +6,7 @@ import { lerp } from '@/lib/utils'
 export function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null)
   const ringRef = useRef<HTMLDivElement>(null)
+  const labelRef = useRef<HTMLSpanElement>(null)
 
   const mouse = useRef({ x: -100, y: -100 })
   const ring = useRef({ x: -100, y: -100 })
@@ -15,11 +16,23 @@ export function CustomCursor() {
     mouse.current = { x: e.clientX, y: e.clientY }
   }, [])
 
-  const onMouseEnterInteractive = useCallback(() => {
+  const onMouseEnterInteractive = useCallback((e: Event) => {
+    const target = e.target as HTMLElement
+    const labelEl = target.closest('[data-cursor-label]') as HTMLElement | null
+    const label = labelEl?.dataset.cursorLabel ?? ''
+
+    if (labelRef.current) {
+      labelRef.current.textContent = label
+      labelRef.current.style.opacity = label ? '1' : '0'
+    }
     ringRef.current?.classList.add('hovered')
   }, [])
 
   const onMouseLeaveInteractive = useCallback(() => {
+    if (labelRef.current) {
+      labelRef.current.textContent = ''
+      labelRef.current.style.opacity = '0'
+    }
     ringRef.current?.classList.remove('hovered')
   }, [])
 
@@ -42,7 +55,6 @@ export function CustomCursor() {
   }, [])
 
   useEffect(() => {
-    // Don't render on touch devices
     if (window.matchMedia('(hover: none)').matches) return
 
     const animate = () => {
@@ -70,7 +82,7 @@ export function CustomCursor() {
 
     const attachInteractiveListeners = () => {
       const interactives = document.querySelectorAll<HTMLElement>(
-        'a, button, [data-cursor-hover], input, textarea, select, label'
+        'a, button, [data-cursor-hover], [data-cursor-label], input, textarea, select, label'
       )
       interactives.forEach((el) => {
         el.addEventListener('mouseenter', onMouseEnterInteractive)
@@ -80,7 +92,6 @@ export function CustomCursor() {
 
     attachInteractiveListeners()
 
-    // Re-attach on DOM mutations (for dynamic content)
     const observer = new MutationObserver(attachInteractiveListeners)
     observer.observe(document.body, { childList: true, subtree: true })
 
@@ -98,7 +109,26 @@ export function CustomCursor() {
   return (
     <>
       <div ref={dotRef} className="cursor-dot" aria-hidden="true" />
-      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
+      <div ref={ringRef} className="cursor-ring" aria-hidden="true">
+        <span
+          ref={labelRef}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            fontFamily: 'var(--font-dm-sans), system-ui, sans-serif',
+            fontSize: '8px',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+            color: 'var(--gold, #5DC241)',
+            whiteSpace: 'nowrap',
+            opacity: 0,
+            transition: 'opacity 0.2s ease',
+            pointerEvents: 'none',
+          }}
+        />
+      </div>
     </>
   )
 }

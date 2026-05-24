@@ -32,9 +32,37 @@ export function ContactPageContent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setFormState('loading')
-    // Placeholder — wire up to your preferred form handler (Resend, Formspree, etc.)
-    await new Promise((r) => setTimeout(r, 1500))
-    setFormState('success')
+
+    const form = e.currentTarget
+    const data = Object.fromEntries(new FormData(form))
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          company: data.company || undefined,
+          phone: data.phone || undefined,
+          services: selectedServices,
+          budget: selectedBudget || undefined,
+          message: data.message,
+          timeline: data.timeline || undefined,
+        }),
+      })
+
+      if (res.ok) {
+        setFormState('success')
+      } else {
+        const err = await res.json()
+        alert(err.error ?? 'Something went wrong. Please try WhatsApp or email.')
+        setFormState('idle')
+      }
+    } catch {
+      alert('Network error. Please try WhatsApp or email directly.')
+      setFormState('idle')
+    }
   }
 
   const contactMethods = [
@@ -54,7 +82,7 @@ export function ContactPageContent() {
       icon: MessageCircle,
       label: 'WhatsApp',
       value: 'Message us directly',
-      href: `https://wa.me/${SITE.whatsapp.replace(/\D/g, '')}`,
+      href: `https://wa.me/${SITE.whatsapp}`,
     },
     {
       icon: Calendar,

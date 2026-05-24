@@ -8,7 +8,7 @@ export const SITE = {
   url: 'https://litcreativedesigns.com',
   email: 'olayinkaojo.ng@gmail.com',
   phone: '+234 803 073 1420',
-  whatsapp: '+2348030731420',
+  whatsapp: '2348030731420',
   location: 'Abuja, Nigeria',
   locationDetail: 'Abuja, Nigeria (Open to Remote & Relocation)',
   founder: 'Olayinka Samuel Ojo',

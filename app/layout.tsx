@@ -1,8 +1,10 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { LenisProvider } from '@/components/providers/LenisProvider'
+import { PageTransition } from '@/components/providers/PageTransition'
 import { CustomCursor } from '@/components/ui/CustomCursor'
 import { Preloader } from '@/components/layout/Preloader'
 import { Navbar } from '@/components/layout/Navbar'
@@ -151,8 +153,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Preloader />
             <CustomCursor />
             <Navbar />
-            <main id="main-content">{children}</main>
+            <PageTransition>
+              <main id="main-content">{children}</main>
+            </PageTransition>
             <Footer />
+            <Analytics />
           </LenisProvider>
         </ThemeProvider>
       </body>

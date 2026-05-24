@@ -96,6 +96,7 @@ export function Navbar() {
 
             <Link
               href="/contact"
+              data-cursor-label="Talk"
               className="hidden lg:inline-flex items-center gap-2 px-6 py-2.5 bg-brand-gold text-brand-black font-sans text-[10px] tracking-[0.15em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
             >
               Let&apos;s Talk

@@ -1,7 +1,8 @@
 import Link from 'next/link'
-import { Instagram, Linkedin, Twitter, Github, ArrowUpRight } from 'lucide-react'
+import { Instagram, Linkedin, Twitter, ArrowUpRight } from 'lucide-react'
 import { SITE, FOOTER_LINKS } from '@/lib/constants'
 import { LogoFull } from '@/components/ui/LogoMark'
+import { MagneticButton } from '@/components/ui/MagneticButton'
 
 const BehanceIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
@@ -39,21 +40,25 @@ export function Footer() {
             </h2>
           </div>
           <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-black font-sans text-xs tracking-[0.2em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
-            >
-              Start a Project
-              <ArrowUpRight size={13} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-            <a
-              href={`https://wa.me/${SITE.whatsapp}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 border border-white/10 text-white/60 font-sans text-xs tracking-[0.2em] uppercase hover:border-brand-gold/30 hover:text-brand-gold transition-all duration-300"
-            >
-              WhatsApp Us
-            </a>
+            <MagneticButton as="div" data-cursor-label="Let's go">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-black font-sans text-xs tracking-[0.2em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
+              >
+                Start a Project
+                <ArrowUpRight size={13} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </Link>
+            </MagneticButton>
+            <MagneticButton as="div" data-cursor-label="Chat">
+              <a
+                href={`https://wa.me/${SITE.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-white/10 text-white/60 font-sans text-xs tracking-[0.2em] uppercase hover:border-brand-gold/30 hover:text-brand-gold transition-all duration-300"
+              >
+                WhatsApp Us
+              </a>
+            </MagneticButton>
           </div>
         </div>
 

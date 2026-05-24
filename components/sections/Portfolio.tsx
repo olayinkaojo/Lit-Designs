@@ -20,7 +20,7 @@ function ProjectCard({ project }: { project: typeof portfolioProjects[0] }) {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className="group relative overflow-hidden cursor-pointer"
     >
-      <Link href={`/work/${project.slug}`} className="block">
+      <Link href={`/work/${project.slug}`} className="block" data-cursor-label="View">
         {/* Image container */}
         <div className="relative aspect-[4/3] overflow-hidden bg-brand-surface-2">
           <div

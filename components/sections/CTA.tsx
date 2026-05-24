@@ -6,6 +6,7 @@ import { motion, useInView } from 'framer-motion'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { SITE } from '@/lib/constants'
 import { fadeInUp } from '@/lib/animations'
+import { MagneticButton } from '@/components/ui/MagneticButton'
 
 export function CTA() {
   const ref = useRef<HTMLDivElement>(null)
@@ -66,26 +67,30 @@ export function CTA() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-3 px-10 py-5 bg-brand-gold text-brand-black font-sans text-xs tracking-[0.2em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
-            >
-              Start a Project
-              <ArrowUpRight
-                size={14}
-                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              />
-            </Link>
+            <MagneticButton as="div" data-cursor-label="Let's go">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 px-10 py-5 bg-brand-gold text-brand-black font-sans text-xs tracking-[0.2em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
+              >
+                Start a Project
+                <ArrowUpRight
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+            </MagneticButton>
 
-            <a
-              href={`https://wa.me/${SITE.whatsapp.replace(/\D/g, '')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-5 border border-white/15 text-white font-sans text-xs tracking-[0.2em] uppercase hover:border-brand-gold/30 hover:text-brand-gold transition-all duration-300 group"
-            >
-              <MessageCircle size={14} />
-              WhatsApp Us
-            </a>
+            <MagneticButton as="div" data-cursor-label="Chat">
+              <a
+                href={`https://wa.me/${SITE.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-10 py-5 border border-white/15 text-white font-sans text-xs tracking-[0.2em] uppercase hover:border-brand-gold/30 hover:text-brand-gold transition-all duration-300 group"
+              >
+                <MessageCircle size={14} />
+                WhatsApp Us
+              </a>
+            </MagneticButton>
           </div>
 
           {/* Trust line */}

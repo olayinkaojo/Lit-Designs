@@ -91,7 +91,7 @@ export function Stats() {
         >
           <p className="section-label mb-4">By the Numbers</p>
           <h2 className="font-display text-display text-white">
-            Five years of
+            8+ years of
             <span className="text-gradient-gold italic"> relentless craft.</span>
           </h2>
         </motion.div>

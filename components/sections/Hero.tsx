@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react'
 import { SITE } from '@/lib/constants'
+import { MagneticButton } from '@/components/ui/MagneticButton'
 
 // ─── Animated Particle Canvas ──────────────────────────
 function ParticleCanvas() {
@@ -190,30 +191,37 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
         >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-black font-sans text-xs tracking-[0.2em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
-          >
-            Start a Project
-            <ArrowUpRight
-              size={14}
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </Link>
-          <Link
-            href="/#portfolio"
-            className="inline-flex items-center gap-3 px-8 py-4 border border-white/15 text-white font-sans text-xs tracking-[0.2em] uppercase hover:border-brand-gold/35 hover:text-brand-gold transition-all duration-300 group"
-          >
-            View Our Work
-            <ArrowUpRight
-              size={14}
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
-          </Link>
+          <MagneticButton as="div" data-cursor-label="Let's go">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-brand-gold text-brand-black font-sans text-xs tracking-[0.2em] uppercase hover:bg-brand-gold-light transition-colors duration-300 group"
+            >
+              Start a Project
+              <ArrowUpRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </MagneticButton>
+
+          <MagneticButton as="div" data-cursor-label="View">
+            <Link
+              href="/#portfolio"
+              className="inline-flex items-center gap-3 px-8 py-4 border border-white/15 text-white font-sans text-xs tracking-[0.2em] uppercase hover:border-brand-gold/35 hover:text-brand-gold transition-all duration-300 group"
+            >
+              View Our Work
+              <ArrowUpRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </Link>
+          </MagneticButton>
+
           <a
             href={SITE.behance}
             target="_blank"
             rel="noopener noreferrer"
+            data-cursor-label="Open"
             className="inline-flex items-center gap-2 font-sans text-xs tracking-[0.15em] uppercase text-white/30 hover:text-brand-gold transition-colors duration-300"
           >
             Behance Portfolio ↗
