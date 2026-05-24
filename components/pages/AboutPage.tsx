@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Award, Briefcase, GraduationCap, Star, MapPin, Mail, Phone } from 'lucide-react'
@@ -167,14 +168,14 @@ export function AboutPageContent() {
           className="relative"
         >
           <div className="relative aspect-[3/4] overflow-hidden gradient-border bg-brand-surface-2">
-            {/* Placeholder — add /public/founder/olayinka.jpg */}
-            <div className="w-full h-full flex flex-col items-center justify-center gap-4" style={{ background: 'linear-gradient(135deg, #1a1a1a 0%, #141414 100%)' }}>
-              <div className="w-24 h-24 rounded-full bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center">
-                <span className="font-display text-5xl text-brand-gold/30">O</span>
-              </div>
-              <p className="font-sans text-xs text-white/20 tracking-widest uppercase">Founder Photo</p>
-              <p className="font-sans text-xs text-white/15">Add: /public/founder/olayinka.jpg</p>
-            </div>
+            <Image
+              src="/founder/olayinka.png"
+              alt={`${SITE.founder} — Founder & Creative Director`}
+              fill
+              className="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-transparent to-transparent" />
             <div className="absolute bottom-6 left-6">
               <p className="font-display text-lg text-white">Olayinka Samuel Ojo</p>
