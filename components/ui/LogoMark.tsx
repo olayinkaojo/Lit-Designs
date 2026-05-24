@@ -29,7 +29,7 @@ export const LOGO_GREY = '#6B6B6B'
 // containerW = 1225 × scale
 //
 const CROP_CONFIGS = {
-  sm:      { imgSize: 123, left: -7,  top: -25, containerW: 101, containerH: 60 },
+  sm:      { imgSize: 205, left: -12, top: -42, containerW: 168, containerH: 100 },
   default: { imgSize: 164, left: -9,  top: -34, containerW: 134, containerH: 80 },
   lg:      { imgSize: 214, left: -12, top: -44, containerW: 175, containerH: 104 },
 } as const
